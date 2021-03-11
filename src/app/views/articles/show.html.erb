@@ -1,0 +1,50 @@
+<h2>編集</h2>
+
+<div>
+  <%= link_to '記事一覧', articles_path %>
+  <%= link_to '記事編集', edit_article_path %>
+  <p>--------------------------</p>
+</div>
+
+<% if flash[:notice] %>
+  <div>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<div>
+  <div><h4><%= @article.title %></h4></div>
+  <div>
+    <p><%= simple_format(@article.body) %></p>
+    <p><%= @article.name %></p>
+    <p>------------------------</p>
+  </div>
+</div>
+
+<div>
+<%# index.html.erbのように保存されたオブジェクトをすべて表示するのでループを利用し %>
+<%# 一つの記事に(@article)に複数のコメント(comments)が紐付けれて保存されている点に注意 %>
+  <% @article.comments.each do |comment| %>
+    <p><%= simple_format(comment.comment) %></p>
+    <div>
+      <span><%= comment.name %></span>
+      <span><%= comment.created_at.to_s(:datetime_jp) %></span>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント記入</p>
+  <%= form_with model: @comment do |f| %>
+    <%= f.hidden_field :article_id %>
+    <div>
+      <%= f.label :name, '名前' %>
+      <%= f.text_field :name %>
+    </div>
+        <div>
+      <%= f.label :comment, 'コメント' %>
+      <%= f.text_area :comment, rows: 4 %>
+    </div>
+    <%= f.submit '送信' %>
+  <% end %>
+</div>
