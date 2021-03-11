@@ -29,9 +29,24 @@
     <div>
       <span><%= comment.name %></span>
       <span><%= comment.created_at.to_s(:datetime_jp) %></span>
+      <span><%= button_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか？'}%></span>
     </div>
   <% end %>
+
+  <p>--------------------------</p>
 </div>
+
+
+<% if flash[:error_messages] %>
+  <div>
+    <ul>
+      <% flash[:error_messages].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <div>
   <p>コメント記入</p>

@@ -32,8 +32,17 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update(article_params)
+    if article.save
+      flash[:notice] = "「#{article.title}」の記事を編集しました"
+      redirect_to article
+    else
+      redirect_to edit_article_path, flash: {
+        article: article,
+        error_messages: article.errors.full_messages
+      }
+    end
 
-    redirect_to article
+    # redirect_to article
   end
 
   def destroy
