@@ -1,0 +1,26 @@
+<h1>ログイン</h1>
+
+<% if flash[:error_messages] %>
+  <div>
+    <ul>
+      <% flash[:error_messages].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with scope: :session, url: login_path do |f| %>
+<div>
+  <%= f.label :mail, 'メールアドレス'%>
+  <%= f.text_field :mail %>
+</div>
+
+<div>
+  <%= f.label :password, 'パスワード'%>
+  <%= f.password_field :password %>
+</div>
+
+<%= f.submit 'ログイン'%>
+<%= link_to '新規ユーザーの方はコチラ', new_user_path %>
+<% end %>

@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<%= form_for @article do |f|%>
+<%= form_with model: @article do |f|%>
   <div>
     <%= f.label :name, '名前' %>
     <%= f.text_field :name %>
