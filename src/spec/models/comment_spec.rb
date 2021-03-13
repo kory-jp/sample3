@@ -20,5 +20,15 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "名前、コメントがある場合、有効である" do
+    article = FactoryBot.create(:article)
+    comment = article.FactoryBot.build(:comment)
+    expect(comment).to be_valid
+  end
+
+  it "名前がない場合、無効である"
+  it "名前が11文字以上の場合、無効である"
+  it "コメントがない場合、無効である"
+  it "コメントが1001文字以上の場合、無効である"
+
 end

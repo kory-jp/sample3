@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rails-flog', require: 'flog'
   gem 'rspec-rails', '~> 4.0.2'
   gem 'rails-controller-testing'
+  gem 'factory_bot_rails', '~> 5.0'
 end
 
 group :development do
