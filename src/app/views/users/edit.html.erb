@@ -1,0 +1,36 @@
+  
+  <h1>個人情報修正</h1>
+  <div>
+    <%= link_to '掲示板一覧', articles_path %>
+  </div>
+</div>
+
+<% if flash[:error_messages] %>
+  <div>
+    <ul>
+      <% flash[:error_messages].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @user do |f|%>
+  <div>
+    <%= f.label :name, 'ユーザー名' %>
+    <%= f.text_field :name %>
+  </div>
+    <div>
+    <%= f.label :mail, 'メールアドレス' %>
+    <%= f.text_field :mail %>
+  </div>
+  <div>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password %>
+  </div>
+    <div>
+      <%= f.label :password_confirmation, 'パスワード(確認)' %>
+      <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit '作成' %>
+<% end %>

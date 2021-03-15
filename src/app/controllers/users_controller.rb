@@ -17,6 +17,23 @@ class UsersController < ApplicationController
   end
 
   def me
+    @user = current_user
+  end
+
+  def edit
+    @user = current_user
+  end   
+
+  def updated
+    @user = user.find(params[:id])
+    if @user.update(user_params)
+      redirect_to mypage_path
+    else
+      redirect_to edit_user_path, flash: {
+        user: @user,
+        error_messages: @user.error_messages
+      }
+    end
   end
 
   def user_params
