@@ -19,7 +19,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Article < ApplicationRecord
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :user
   
   validates :name, presence: true, length: { maximum: 10}
