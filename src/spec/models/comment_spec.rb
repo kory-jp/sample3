@@ -21,14 +21,32 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   it "名前、コメントがある場合、有効である" do
-    article = FactoryBot.create(:article)
-    comment = article.FactoryBot.build(:comment)
+    comment = build(:comment)
     expect(comment).to be_valid
   end
 
-  it "名前がない場合、無効である"
-  it "名前が11文字以上の場合、無効である"
-  it "コメントがない場合、無効である"
-  it "コメントが1001文字以上の場合、無効である"
+  it "名前がない場合、無効である" do
+    comment = build(:comment, name: nil)
+    comment.valid?
+    expect(comment.errors[:name]).to include("を入力してください")
+  end
+
+  it "名前が11文字以上の場合、無効である" do
+    comment = build(:comment, name: "a" * 11)
+    comment.valid?
+    expect(comment.errors[:name]).to include("は10文字以内で入力してください")
+  end
+
+  it "コメントがない場合、無効である" do
+    comment = build(:comment, comment: nil)
+    comment.valid?
+    expect(comment.errors[:comment]).to include("を入力してください")
+  end
+
+  it "コメントが1001文字以上の場合、無効である" do
+    comment = build(:comment, comment: "a" * 1001)
+    comment.valid?
+    expect(comment.errors[:comment]).to include("は1000文字以内で入力してください")
+  end
 
 end

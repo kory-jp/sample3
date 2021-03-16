@@ -32,7 +32,7 @@
       <span><%= button_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか？'}%></span>
     </div>
   <% end %>
-
+  <%= link_to "#{@user.name}", mypage_path %>
   <p>--------------------------</p>
 </div>
 

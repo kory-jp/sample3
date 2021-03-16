@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @user = User.find_by(id: @article.user_id)
     @comment = Comment.new(article_id: @article.id)
   end
 
@@ -55,6 +56,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:name, :title, :body)
+    params.require(:article).permit(:name, :title, :body).merge(user_id: current_user.id)
   end
 end
