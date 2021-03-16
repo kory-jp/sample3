@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  skip_before_action :authenticate_user, {only: [:index, :show]}
+
   def index
     @articles = Article.page(params[:page])
   end
@@ -48,7 +50,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     article = Article.find(params[:id])
-    article.delete
+    article.destroy
 
     flash[:notice] = "「#{article.title}」の記事を削除しました"
     redirect_to articles_path

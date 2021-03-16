@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user
+
   def create
     user = User.find_by(mail: params[:session][:mail])
     if user && user.authenticate(params[:session][:password])
