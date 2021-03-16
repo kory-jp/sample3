@@ -14,6 +14,7 @@
 #  index_users_on_mail  (mail) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :boards, dependent: :delete_all
   has_secure_password
 
   validates :name,  presence: true, length: {maximum: 18}
