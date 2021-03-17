@@ -15,6 +15,9 @@
 #
 class User < ApplicationRecord
   has_many :articles, dependent: :delete_all
+  has_many :favorites
+  has_many :favorite_articles, through: :favorites, source: :article
+
   has_secure_password
 
   validates :name,  presence: true, length: {maximum: 18}

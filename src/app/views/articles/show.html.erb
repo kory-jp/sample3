@@ -17,6 +17,17 @@
   <div>
     <p><%= simple_format(@article.body) %></p>
     <p><%= @article.name %></p>
+
+    <% if @current_user %>
+      <% if @article.favorited_by?(@current_user) %>
+        <p><span>お気に入り解除:</span><%= link_to @article.favorites.count, article_favorites_path(@article.id), method: :delete %></p>
+      <% else %>
+        <p><span>お気に入り登録:</span><%= link_to @article.favorites.count, article_favorites_path(@article.id), method: :post %></p>      
+      <% end %>
+    <% else %>
+      <p><span>お気に入り数:</span><%= @article.favorites.count%></p>
+    <% end %>
+
     <%= link_to "#{@user.name}", mypage_path %>
     <p>------------------------</p>
   </div>
