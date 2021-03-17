@@ -6,4 +6,12 @@
   <%= @current_user.mail %>
 </div>
 
+<div>
+  <% @favorite_articles.each do |article| %>
+    <hr>
+    <p><span>お気に入り記事内容:</span><%= link_to article.body, article_path(article.id) %></p>
+    <p>---------------------------</p>
+  <% end %>
+</div>
+
 <%= link_to '個人情報編集', edit_user_path(@user) %>
