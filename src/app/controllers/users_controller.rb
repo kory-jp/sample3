@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, {only: [:new, :create]}
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new(flash[:user])
   end
@@ -16,6 +20,10 @@ class UsersController < ApplicationController
         error_messages: user.errors.full_messages
       }
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def me
@@ -37,6 +45,16 @@ class UsersController < ApplicationController
         error_messages: @user.error_messages
       }
     end
+  end
+
+  def follows
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
   end
 
   def user_params

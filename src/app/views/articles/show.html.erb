@@ -28,10 +28,19 @@
       <p><span>お気に入り数:</span><%= @article.favorites.count%></p>
     <% end %>
 
-    <%= link_to "#{@user.name}", mypage_path %>
+    <%= link_to "#{@user.name}", user_path(@user.id) %>
     <p>------------------------</p>
   </div>
+
+  <% if @current_user != @article.user %>
+    <% if @article.user.followed_by?(@current_user) %>
+      <p><%= link_to "フォロー済み", user_relationships_path(@article.user.id), method: :delete %></p>
+    <% else %>
+      <p><%= link_to "フォローする", user_relationships_path(@article.user.id), method: :post %></p>
+    <% end %>
+  <% end %>
 </div>
+<p>--------------------------</p>
 
 <div>
 <%# index.html.erbのように保存されたオブジェクトをすべて表示するのでループを利用し %>
