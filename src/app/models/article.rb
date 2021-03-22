@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  body       :text(65535)      not null
+#  image_data :text(65535)
 #  name       :string(255)      not null
 #  title      :string(255)      not null
 #  created_at :datetime         not null
@@ -19,6 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Article < ApplicationRecord
+  include ImageUploader[:image]
   has_many :comments, dependent: :destroy
   has_many :favorites
   belongs_to :user
