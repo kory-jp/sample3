@@ -1,4 +1,4 @@
-<h2>編集</h2>
+<h2>詳細</h2>
 
 <div>
   <%= link_to '記事一覧', articles_path %>
@@ -17,6 +17,12 @@
   <div>
     <p><%= simple_format(@article.body) %></p>
     <p><%= @article.name %></p>
+
+    <% if @article.image == nil %>
+      <div>no image</div>
+    <% else %>
+      <%= image_tag @article.image.url %>
+    <% end %>
 
     <% if @current_user %>
       <% if @article.favorited_by?(@current_user) %>
