@@ -21,7 +21,7 @@
     <% if @article.image == nil %>
       <div>no image</div>
     <% else %>
-      <%= image_tag @article.image.url %>
+      <%= image_tag @article.image[:medium].url %>
     <% end %>
 
     <% if @current_user %>

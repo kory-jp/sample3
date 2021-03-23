@@ -24,5 +24,10 @@
       <%= f.label :body, '本文' %>
       <%= f.text_area :body, rows: 10 %>
   </div>
+  <div>
+    <%= f.label :image_data, '画像' %>
+    <%= f.hidden_field :image, value: @article.cached_image_data %>
+    <%= f.file_field :image %>
+  </div>
   <%= f.submit '保存' %>
 <% end %>
