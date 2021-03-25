@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
+#  image_data      :text(65535)
 #  introduction    :text(65535)
 #  mail            :string(255)      not null
 #  name            :string(255)      not null

@@ -3,6 +3,11 @@
 
 <% @users.each do |user| %>
   <hr>
+  <% if user.image == nil %>
+      <div>no image</div>
+  <% else %>
+   <%= image_tag user.image[:small].url %>
+  <% end %>
   <p><span>名前:</span><%= link_to user.name, user_path(user.id) %></p>
   <p><span>紹介文</span><%= user.introduction %></p>
 <% end %>

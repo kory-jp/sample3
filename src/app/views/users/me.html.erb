@@ -1,5 +1,12 @@
 <h1>マイページ</h1>
 <div>
+    <% if @current_user.image == nil %>
+      <div>no image</div>
+    <% else %>
+      <%= image_tag @current_user.image[:small].url %>
+    <% end %>
+</div>
+<div>
   <%= @current_user.name %>
 </div>
 <div>
