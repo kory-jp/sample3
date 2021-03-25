@@ -20,13 +20,18 @@
     <%= f.label :name, 'ユーザー名' %>
     <%= f.text_field :name %>
   </div>
-    <div>
+  <div>
     <%= f.label :mail, 'メールアドレス' %>
     <%= f.text_field :mail %>
   </div>
-    <div>
+  <div>
     <%= f.label :introduction, '紹介文' %>
     <%= f.text_area :introduction %>
+  </div>
+  <div>
+    <%= f.label :image_data, 'プロフィール画像' %>
+    <%= f.hidden_field :image, value: @current_user.cached_image_data %>
+    <%= f.file_field :image %>
   </div>
   <div>
     <%= f.label :password, 'パスワード' %>

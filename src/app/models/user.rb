@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
+#  image_data      :text(65535)
 #  introduction    :text(65535)
 #  mail            :string(255)      not null
 #  name            :string(255)      not null
@@ -15,6 +16,8 @@
 #  index_users_on_mail  (mail) UNIQUE
 #
 class User < ApplicationRecord
+  include ImageUploader[:image]
+
   has_many :articles, dependent: :delete_all
   has_many :favorites
   has_many :favorite_articles, through: :favorites, source: :article

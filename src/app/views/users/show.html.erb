@@ -3,6 +3,14 @@
   <p><%= @user.name%><span>様の詳細ページ</span></p>
 </h1>
 
+<div>
+    <% if @user.image == nil %>
+      <div>no image</div>
+    <% else %>
+      <%= image_tag @user.image[:small].url %>
+    <% end %>
+</div>
+
 <p><span>アドレス:</span><%= @user.mail%></p>
 <p><span>紹介文:</span><%= @user.introduction %></p>
 
