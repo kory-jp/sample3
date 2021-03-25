@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
+#  introduction    :text(65535)
 #  mail            :string(255)      not null
 #  name            :string(255)      not null
 #  password_digest :string(255)      not null
@@ -25,6 +26,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :name,  presence: true, length: {maximum: 18}
+  validates :introduction, length: {maximum: 1000}
   validates :mail,
     presence: true,
     uniqueness: true,

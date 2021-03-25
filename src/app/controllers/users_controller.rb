@@ -35,8 +35,8 @@ class UsersController < ApplicationController
     @user = current_user
   end   
 
-  def updated
-    @user = user.find(params[:id])
+  def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to mypage_path
     else
@@ -58,6 +58,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :mail, :password, :password_confirmation)
+    params.require(:user).permit(:name, :introduction, :mail, :password, :password_confirmation)
   end
 end
