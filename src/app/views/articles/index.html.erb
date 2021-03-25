@@ -26,7 +26,11 @@
     <tr>
       <th><%= article.id %></th>
       <td><%= article.title %></td>
-      <td><%= article.name %></td>
+      <%# -------- %>
+      <% @users.each do |user| %>
+        <td><%= link_to "#{user.name}", user_path(user.id) %></td>
+      <% end %>
+      <%# -------- %>
       <td><%= article.created_at.to_s(:datetime_jp) %></td>
       <td><%= article.updated_at.to_s(:datetime_jp) %></td>
       <td><%= link_to '詳細', article %></td>

@@ -3,6 +3,9 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.page(params[:page])
+    # binding.pry
+    # @users = User.find_by(id: @articles.user_id)
+    @users = User.find_by(user_id: @articles.user_id)
   end
 
   def new
@@ -58,6 +61,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:name, :title, :body, :image).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id)
   end
 end
