@@ -4,6 +4,7 @@
 </h1>
 
 <p><span>アドレス:</span><%= @user.mail%></p>
+<p><span>紹介文:</span><%= @user.introduction %></p>
 
 <p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
 <p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>

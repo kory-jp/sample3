@@ -4,5 +4,5 @@
 <% @users.each do |user| %>
   <hr>
   <p><span>名前:</span><%= link_to user.name, user_path(user.id) %></p>
-  <p><span>メール:</span><%= user.mail %></p>
+  <p><span>紹介文</span><%= user.introduction %></p>
 <% end %>
