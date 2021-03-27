@@ -2,7 +2,9 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user, {only: [:index, :show]}
 
   def index
-    @articles = Article.page(params[:page])
+    # @articles = Article.page(params[:page])
+    # @users = User.where(id: @articles.pluck(:user_id))
+    @articles = Article.userName.page(params[:page]).order(id: "DESC")
   end
 
   def new
@@ -58,6 +60,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:name, :title, :body, :image).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id)
   end
 end
