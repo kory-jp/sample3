@@ -2,10 +2,9 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user, {only: [:index, :show]}
 
   def index
-    @articles = Article.page(params[:page])
-    # binding.pry
-    # @users = User.find_by(id: @articles.user_id)
-    @users = User.find_by(user_id: @articles.user_id)
+    # @articles = Article.page(params[:page])
+    # @users = User.where(id: @articles.pluck(:user_id))
+    @articles = Article.userName.page(params[:page]).order(id: "DESC")
   end
 
   def new

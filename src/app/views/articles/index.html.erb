@@ -23,19 +23,17 @@
   </thead>
   <tbody>
   <% @articles.each do |article|%>
-    <tr>
-      <th><%= article.id %></th>
-      <td><%= article.title %></td>
-      <%# -------- %>
-      <% @users.each do |user| %>
-        <td><%= link_to "#{user.name}", user_path(user.id) %></td>
-      <% end %>
-      <%# -------- %>
-      <td><%= article.created_at.to_s(:datetime_jp) %></td>
-      <td><%= article.updated_at.to_s(:datetime_jp) %></td>
-      <td><%= link_to '詳細', article %></td>
-      <td><%= link_to '削除', article, method: :delete %></td>
-    </tr>
+   <tr>
+     <th><%= article.id %></th>
+     <td><%= article.title %></td>
+     <%# -------- %>
+     <td><%= link_to "#{article.user.name}", user_path(article.user.id)%></td>
+     <%# -------- %>
+     <td><%= article.created_at.to_s(:datetime_jp) %></td>
+     <td><%= article.updated_at.to_s(:datetime_jp) %></td>
+     <td><%= link_to '詳細', article %></td>
+     <td><%= link_to '削除', article, method: :delete %></td>
+   </tr>
   <% end %>
 </tbody>
 </table>
