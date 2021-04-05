@@ -26,4 +26,7 @@
     <%= f.file_field :image %>
   </div>
   <%= f.submit '保存' %>
+  <div>
+      <%= link_to '削除', @article, method: :delete %>
+  </div>
 <% end %>
