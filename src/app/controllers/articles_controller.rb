@@ -31,7 +31,14 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    article = Article.find(params[:id])
+    # binding.pry
+    if article.user_id == @current_user.id
+      @article = Article.find(params[:id])
+    else
+      flash[:notice] = "「#{article.title}」の編集権限がありません"
+      redirect_to article
+    end
   end
 
   def update
