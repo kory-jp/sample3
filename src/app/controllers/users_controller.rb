@@ -28,7 +28,8 @@ class UsersController < ApplicationController
 
   def me
     @user = current_user
-    @favorite_articles = @user.favorite_articles
+    @articles = @user.articles.where(user_id: current_user.id).page(params[:page]).order(id: "DESC")
+    @favorite_articles = @user.favorite_articles.page(params[:page]).order(id: "DESC")
   end
 
   def edit
