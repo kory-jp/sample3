@@ -22,5 +22,26 @@
 require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'お気に入り機能' do
+    context '正常系' do
+      it 'article_id,user_idがある場合、有効である' do
+        favorite = build(:favorite)
+        expect(favorite).to be_valid
+      end
+    end
+
+    context '異常系' do
+      it 'article_idがない場合,無効である' do
+        favorite = build(:favorite, article: nil)
+        favorite.valid?
+        expect(favorite.errors[:article]).to include("を入力してください")
+      end
+
+      it 'user_idがない場合,無効である' do
+        favorite = build(:favorite, user: nil)
+        favorite.valid?
+        expect(favorite.errors[:user]).to include("を入力してください")
+      end
+    end
+  end
 end

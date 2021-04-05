@@ -21,7 +21,13 @@
 #
 FactoryBot.define do
   factory :favorite do
-    user { nil }
-    article { nil }
+    # user { nil }
+    # article { nil }
+
+    association :user,
+    factory: :user
+
+    association :article,
+    factory: :article
   end
 end

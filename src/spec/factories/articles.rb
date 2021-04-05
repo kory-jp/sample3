@@ -21,7 +21,6 @@
 FactoryBot.define do
   factory :article do
     id {"1"}
-    name {"sampleName"}
     title {"sampleTitle"}
     body {"sampleBody"}
     created_at {"2021-03-15 18:28:12.343235000 +0900"}
