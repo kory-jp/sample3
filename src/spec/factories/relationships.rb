@@ -10,7 +10,10 @@
 #
 FactoryBot.define do
   factory :relationship do
-    following_id { 1 }
-    follower_id { 1 }
+    # following { FactoryBot.create(:user, id:101 ) }
+    # follower { FactoryBot.create(:user, id:102) }
+
+    sequence(:following) {|n| FactoryBot.create(:user, id:"10#{n}")}
+    sequence(:follower) {|n| FactoryBot.create(:user, id:"20#{n}")}
   end
 end
