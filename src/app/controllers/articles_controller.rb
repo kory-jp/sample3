@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   def index
     # @articles = Article.page(params[:page])
     # @users = User.where(id: @articles.pluck(:user_id))
-    @articles = Article.userName.page(params[:page]).order(id: "DESC")
+    @articles = params[:tag_id].present? ? Tag.find(params[:tag_id]).articles : Article.all
+    @articles = @articles.userName.page(params[:page]).order(id: "DESC")
   end
 
   def new
@@ -13,6 +14,7 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.new(article_params)
+    binding.pry
     if article.save
       flash[:notice] = "「#{article.title}」の記事を作成しました"
       redirect_to article
@@ -32,7 +34,6 @@ class ArticlesController < ApplicationController
 
   def edit
     article = Article.find(params[:id])
-    # binding.pry
     if article.user_id == @current_user.id
       @article = Article.find(params[:id])
     else
@@ -67,6 +68,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :body, :image, tag_ids:[]).merge(user_id: current_user.id)
   end
 end

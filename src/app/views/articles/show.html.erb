@@ -14,6 +14,9 @@
 
 <div>
   <div><h4><%= @article.title %></h4></div>
+  <% @article.tags.each do |tag| %>
+    <span>[<%= tag.name %>]</span>
+  <% end %>
   <div>
     <p><%= simple_format(@article.body) %></p>
 
