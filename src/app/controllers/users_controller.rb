@@ -24,6 +24,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if current_user
+      @current_user_memberships = membership.where(user_id: current_user.id)
+      @current_user_memberships.each do |current_user_membership|
+        if current_user_membership.room.user_id = @user.id
+          @has_room = true
+          @room_id = current_user_membership.room_id
+        else
+          @room = Room.new
+          @membership = Membership.new
+        end
+      end
+    end
   end
 
   def me

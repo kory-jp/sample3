@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: %i[create destroy]
+  resources :rooms, only: [:createm :show]
+  resources :messages, only: [:create]
 end
