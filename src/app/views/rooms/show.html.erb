@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <%= render "message_area", messages: @messages %>
+  </div>
+  <div>
+    <div>
+      <%= form_with model: @message, url: messages_path, method: :post, local: true do |f|  %>
+        <div>
+          <%= f.text_area :context %>
+        </div>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信▶︎"%>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -23,3 +23,22 @@
         <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
     <% end %>
 <% end %>
+
+<div>
+  <% if @current_user %>
+    <% unless @current_user == @user %>
+          <% if @has_room %>
+        <div>
+          <%= button_to "チャットを再開する", room_path(@room_id), method: :get %>
+        </div>
+      <% else %>
+        <div>
+          <%= form_with url: rooms_path, method: :post, local: true do |f| %>
+            <%= hidden_field_tag :user_id, @user.id %>
+            <%= f.submit "チャットを始める"%>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

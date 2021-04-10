@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <% if messages.present? %>
+      <% messages.each do |message| %>
+        <div>
+          <% user = message.user %>
+          <% class_suffix = @current_user == user ? "right" : "left" %>
+          <div class="<%= class_suffix %>">
+          <%# --------変更----------- %>
+            <% if message.user.image %>
+              <%= image_tag message.user.image[:small].url %>
+            <% else %>
+              <%= message.user.name %>
+            <% end %>
+          </div>
+          <div class="<%= class_suffix%>">
+            <div>
+              <%= message.context %>
+            </div>
+            <div>
+              <%= time_ago_in_words(message.created_at)%>前
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

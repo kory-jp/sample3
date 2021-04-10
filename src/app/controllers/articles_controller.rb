@@ -14,7 +14,6 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.new(article_params)
-    binding.pry
     if article.save
       flash[:notice] = "「#{article.title}」の記事を作成しました"
       redirect_to article
