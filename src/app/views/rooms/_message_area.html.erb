@@ -1,23 +1,24 @@
 <div>
   <div>
     <% if messages.present? %>
-      <% messages.each do |do| %>
+      <% messages.each do |message| %>
         <div>
           <% user = message.user %>
-          <% class_suffix = current_user == user ? "right" : "left" %>
+          <% class_suffix = @current_user == user ? "right" : "left" %>
           <div class="<%= class_suffix %>">
-            <% if message.user.image.url(:small) %>
-              <%= image_tag message.user.image.url(:small) %>
+          <%# --------変更----------- %>
+            <% if message.user.image %>
+              <%= image_tag message.user.image[:small].url %>
             <% else %>
               <%= message.user.name %>
             <% end %>
           </div>
           <div class="<%= class_suffix%>">
             <div>
-              <%= message.content %>
+              <%= message.context %>
             </div>
             <div>
-              <%= time_age_words(message.content%>前
+              <%= time_ago_in_words(message.created_at)%>前
             </div>
           </div>
         </div>

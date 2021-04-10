@@ -1,4 +1,4 @@
-class RoomController < ApplicationController
+class RoomsController < ApplicationController
   skip_before_action :authenticate_user
 
   def create
@@ -10,7 +10,7 @@ class RoomController < ApplicationController
   end
 
   def show
-    @room Room.find(prams[:id])
+    @room = Room.find(params[:id])
     if Membership.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
       @message = Message.new
