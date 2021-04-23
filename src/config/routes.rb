@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :comments, only: %i[create destroy]
   resources :rooms, only: [:create, :show]
   resources :messages, only: [:create]
+  get '/search' => 'search#search'
 end

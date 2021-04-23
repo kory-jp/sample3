@@ -10,6 +10,17 @@
 <% end %>
 <%= link_to 'ユーザー一覧', users_path %>
 
+<div>
+  <div>
+    <% if @current_user %>
+      <%= form_with url:search_path, method: :get, local: true do |f| %>
+        <%= f.text_field 'search[value]'%>
+        <%= f.select 'search[model]', options_for_select({"User"=>"user", "Article"=> "article"}) %>
+        <%= f.submit :"検索" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <% flash.each do |key, value| %>
     <p class="alert alert-<%= key %>">
       <%= value %>
