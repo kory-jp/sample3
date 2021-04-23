@@ -1,0 +1,58 @@
+<div>
+  <div>
+    <% if @model == "user" %>
+     <h2>ユーザー検索『<%= @value %>』</h2>
+     <table>
+      <thead>
+        <tr>
+        <th></th>
+        <th>名前</th>
+        <th>紹介文</th>
+        </tr>
+      </thead>
+      <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <th>
+              <% if user.image == nil %>
+                <div>no image</div>
+              <% else %>
+                <%= image_tag user.image[:small].url %>
+              <% end %>
+            </th>
+            <th>
+              <%= link_to user.name, user_path(user.id) %>
+            </th>
+            <th>
+              <%= user.introduction %>
+            </th>
+          </tr>
+        </tbody>
+      <% end %>
+      <% elsif @model == "article" %>
+      <h2>記事検索『<%= @value %>』</h2>
+      <tbody>
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <% @articles.each do |article| %>
+          <tbody>
+            <tr>
+              <th>
+                <%= link_to article.title, article_path(article.id) %>
+              </th>
+              <th>
+                <%= article.body %>
+              </th>
+            </tr>
+          </tbody>
+        <% end %>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
