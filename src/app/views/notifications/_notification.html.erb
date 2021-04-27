@@ -1,0 +1,15 @@
+<% visitor=notification.visitor %>
+<% article=notification.article %>
+
+<div>
+  <%= link_to user_path(notification.visitor) do %>
+    <% if notification.visitor.image %>
+      <%= image_tag notification.visitor.image[:small].url %>
+    <% end %>
+  <% end %>
+  <%== notification_form(notification)%><span><%= "(#{time_ago_in_words(notification.created_at)}前)" %></span>
+  <br>
+  <% if !@comment.nil? %>
+    <p><%= @comment %></p>
+  <% end %>
+</div>

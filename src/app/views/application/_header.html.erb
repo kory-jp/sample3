@@ -10,6 +10,13 @@
 <% end %>
 <%= link_to 'ユーザー一覧', users_path %>
 
+<% if @current_user %>
+  <%= link_to '通知', notifications_path %>
+  <% if unchecked_notifications.any? %>
+    <i class="fa fa-circle notification-circle"></i>
+  <% end %>
+<% end %>
+
 <div>
   <div>
     <% if @current_user %>
@@ -21,6 +28,7 @@
     <% end %>
   </div>
 </div>
+
 <% flash.each do |key, value| %>
     <p class="alert alert-<%= key %>">
       <%= value %>

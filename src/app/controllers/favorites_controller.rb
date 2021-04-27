@@ -2,6 +2,8 @@ class FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.build(article_id: params[:article_id])
     favorite.save
+    @article = Article.find(params[:article_id])
+    @article.create_notification_favorite!(@current_user)
     redirect_to mypage_path
   end
 
