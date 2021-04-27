@@ -20,6 +20,23 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Message < ApplicationRecord
+  has_many :notifications, dependent: :destroy
   belongs_to :user
   belongs_to :room
+
+  def create_notification_message!(current_user, room, message)
+    @roomMemberNotMe = Membership.where(room_id: room.id).where.not(user_id: current_user.id)
+    @visitedId = @roomMemberNotMe.find_by(room_id: room.id)
+    notification = current_user.active_notifications.new(
+      room_id: room.id,
+      message_id: message.id,
+      visited_id: @visitedId.user_id,
+      visitor_id: current_user.id,
+      action: 'dm'
+    )
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
 end

@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      @article = @comment.article
+      @article.create_notification_comment!(current_user, @comment_id)
       flash[:notice] = 'コメントを投稿しました'
       redirect_to @comment.article
     else
@@ -20,6 +22,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:article_id, :name, :comment)
+    params.require(:comment).permit(:article_id, :comment).merge(user_id: @current_user.id, name:@current_user.name)
   end
 end
